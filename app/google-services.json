@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "499645597384",
+    "project_id": "stralingbankchallengeapp",
+    "storage_bucket": "stralingbankchallengeapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499645597384:android:519a88180f39e7418ac7fd",
+        "android_client_info": {
+          "package_name": "com.example.starlingbankchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499645597384-2k74kl7v0g0p77cfdi83c5vkr592ernt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJPJr1R3hQATVMnz62aIWYcPuRtSxFdFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499645597384-2k74kl7v0g0p77cfdi83c5vkr592ernt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
