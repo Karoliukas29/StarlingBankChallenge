@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StarlingBankChallenge</string>
+    <string name="round_up">Round Up</string>
 </resources>

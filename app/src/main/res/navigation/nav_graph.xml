@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/transactionsFragment">
 
-    <!-- TODO: ADD START DESTINATION WHEN UI FRAGMENTS WILL BE CREATED
-<!-    app:startDestination=""-->
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.example.starlingbankchallenge.feature.transactionsroundup.fragment.TransactionsFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_transactions" />
+    <fragment
+        android:id="@+id/savingAccountFragment"
+        android:name="com.example.starlingbankchallenge.feature.savinggoal.fragment.SavingGoalFragment"
+        android:label="fragment_apartemnt_search"
+        tools:layout="@layout/fragment_saving_goal" >
+
+    </fragment>
+</navigation>
