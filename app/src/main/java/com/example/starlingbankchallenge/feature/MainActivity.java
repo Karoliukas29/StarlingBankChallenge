@@ -7,7 +7,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
-
+//
     @Override
     protected ActivityMainBinding getBinding() {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
