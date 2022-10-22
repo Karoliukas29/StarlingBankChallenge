@@ -1,33 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: 'buildsystem/dependencies.gradle'
-buildscript {
-    ext.navigation_args = '1.0.0-alpha05'
-    ext.google_service = '4.3.10'
-    ext.hilt = '2.40.1'
-    ext.crashlytics = '2.9.1'
-
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath "com.google.gms:google-services:$google_service"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$navigation_args"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt"
-        classpath "com.google.firebase:firebase-crashlytics-gradle:2.9.2"
-    }
-}
-
-
-allprojects {
-    repositories {
-        google()
-        maven { url 'https://jitpack.io'}
-        mavenCentral()
-    }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
+plugins {
+    id 'com.android.application' version '7.3.0' apply false
+    id 'com.android.library' version '7.3.0' apply false
 }

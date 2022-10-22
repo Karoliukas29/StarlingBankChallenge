@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="text_2x">12sp</dimen>
-    <dimen name="text_3x">14sp</dimen>
-    <dimen name="text_4x">16sp</dimen>
-    <dimen name="text_5x">18sp</dimen>
-    <dimen name="text_6x">20sp</dimen>
-</resources>
