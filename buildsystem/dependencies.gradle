@@ -1,0 +1,88 @@
+def config = rootProject.extensions.getByName("ext")
+project.ext.set("config", config)
+
+ext {
+    versionMajor = 1
+    versionMinor = 0
+    versionPatch = 0
+
+    // Sdk and tools
+    minSdkVersion = 24
+    targetSdkVersion = 32
+    compileSdkVersion = targetSdkVersion
+
+    //google androidx
+    materialAndroidXVersion = '1.6.1'
+    googleAndroidXVersion = '1.0.0'
+    appcompatVersion = '1.4.2'
+    constraintlayoutVersion = '2.1.4'
+    coreTest="1.4.0"
+
+    viewPagerVersion = '1.0.0'
+
+
+    //jetPack Components
+    lifecycleVersion = '2.5.1'
+    navigationVersion = '2.5.2'
+    paginationVersion = '1.0.1'
+    workRunTimeVersion = '2.8.0-alpha02'
+
+    //rx
+    rxAndroidVersion = '2.1.1'
+    rxJavaVersion = '2.2.9'
+
+    //di
+    hiltVersion = '2.41'
+    hiltLifecyleVersion='1.0.0-alpha03'
+    hiltCompilerVersion='1.0.0'
+
+    //retrofit
+    retrofit2Version = '2.9.0'
+    gsonVersion = '2.8.9'
+    rxJavaAdapterVersion = '1.0.0'
+    okHttpVersion = '4.9.2'
+    scalarsVersion = '2.9.0'
+
+
+    //image loader
+    glideVersion = '4.13.0'
+
+    //animation
+    autoimagesliderVersion = '1.4.0'
+
+    //firebase
+    firebaseBomVersion = '30.2.0'
+
+    //test
+    junitVersion = '4.12'
+    mockitoVersion = '1.9.5'
+    runerVersion = '1.0.2'
+    espressoVersion = '3.0.2'
+    robolectricVersion = '3.1.1'
+    assertJVersion = '1.7.1'
+    deviceAutomatoVersion = '1.0.0'
+
+    assertCoreVersion = '2.6.0'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    arrowVersion = '1.0.0'
+
+    //timber
+    timberVersion = '5.0.1'
+
+
+    domainDependencies = [
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            assertDep      : "org.assertj:assertj-core:$assertCoreVersion",
+            arrow          : "com.fernandocejas:arrow:${arrowVersion}"]
+
+    domainTestDependencies = [
+            junit:              "junit:junit:${junitVersion}",
+            mockito:            "org.mockito:mockito-core:${mockitoVersion}",
+            mockitoAnnotation:  "org.mockito:mockito-android:${mockitoVersion}",
+            assertj:            "org.assertj:assertj-core:${assertJVersion}"
+    ]
+
+}
