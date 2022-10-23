@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 import com.example.starlingbankchallenge.BuildConfig;
 import com.example.starlingbankchallenge.network.Interceptor.NetworkConnectionInterceptor;
+import com.example.starlingbankchallenge.network.services.AccountRetrofitService;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.TimeUnit;
@@ -80,5 +81,10 @@ public class NetworkModule {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnected();
+    }
+    @Singleton
+    @Provides
+    public AccountRetrofitService provideAccountService(Retrofit retrofit) {
+        return retrofit.create(AccountRetrofitService.class);
     }
 }
