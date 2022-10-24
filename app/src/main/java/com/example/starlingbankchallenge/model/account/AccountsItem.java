@@ -1,4 +1,4 @@
-package com.example.starlingbankchallenge.model;
+package com.example.starlingbankchallenge.model.account;
 
 import android.os.Parcel;
 import android.os.Parcelable;
