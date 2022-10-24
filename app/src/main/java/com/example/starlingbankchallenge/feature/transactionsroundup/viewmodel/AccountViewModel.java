@@ -6,7 +6,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.starlingbankchallenge.BuildConfig;
 import com.example.starlingbankchallenge.model.account.AccountsResponse;
+import com.example.starlingbankchallenge.model.transactions.TransactionResponseItem;
 import com.example.starlingbankchallenge.repository.AccountRepository;
+import com.example.starlingbankchallenge.repository.TransfersRepository;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,11 +23,13 @@ import timber.log.Timber;
 @HiltViewModel
 public class AccountViewModel extends ViewModel {
     private static final String TAG = "AccountviewModel";
-    private final AccountRepository accountRepository;
+    private AccountRepository accountRepository;
+    private TransfersRepository transfersRepository;
 
     @Inject
-    public AccountViewModel(AccountRepository accountRepository) {
+    public AccountViewModel(AccountRepository accountRepository, TransfersRepository transfersRepository) {
         this.accountRepository = accountRepository;
+        this.transfersRepository = transfersRepository;
     }
     //Creating live date from the flowable function, using LiveDataReactiveStreams
     public LiveData<AccountsResponse> loadAccounts() {
@@ -40,4 +46,23 @@ public class AccountViewModel extends ViewModel {
                     Timber.tag(TAG).e(result);
                 });
     }
+
+    public LiveData<List<TransactionResponseItem>> loadTransactions(String accountUid, String categoryUid, String changesSince) {
+        return LiveDataReactiveStreams.fromPublisher(getTransactionsFlowable(accountUid, categoryUid, changesSince));
+    }
+    // convert single to flowable and subscribe it on io thread and observeOn main thread, and getting result/error
+    private Flowable<List<TransactionResponseItem>> getTransactionsFlowable(String accountUid, String categoryUid, String changesSince) {
+        return transfersRepository.getTransactions(BuildConfig.API_SECRET_TOKEN, accountUid, categoryUid, changesSince)
+                .toFlowable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext(result -> Timber.tag(TAG).i(result.toString()))
+                .doOnError(result -> {
+                    Timber.tag(TAG).e(result);
+                });
+    }
+
+
+
+
 }
