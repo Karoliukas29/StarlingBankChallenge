@@ -19,6 +19,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class TransactionsFragment extends BaseFragment<FragmentTransactionsBinding> {
     private AccountViewModel accountViewModel;
+    private String accountUid, categoryUid, changesSince;
+    private static final String TAG = "TransactionsFragment";
 
     @Override
     public FragmentTransactionsBinding getFragmentBinding(LayoutInflater inflater, ViewGroup container) {
@@ -35,7 +37,6 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
         super.onCreate(savedInstanceState);
         AppPreference.init(getContext());
         if (getArguments() != null) {
-
         }
     }
 
@@ -46,7 +47,6 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
         observeData();
     }
 
-
     private void initView() {
         accountViewModel = new ViewModelProvider(requireActivity()).get(AccountViewModel.class);
     }
@@ -55,11 +55,15 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
         accountViewModel.loadAccounts().observe(getViewLifecycleOwner(), accountsResponse -> {
             for (AccountsItem accountsItem : accountsResponse.getAccounts()) {
                 AppPreference.write(Const.ACCOUNT_USER_ID, accountsItem.getAccountUid());
-
+                AppPreference.write(Const.DEFAULT_CATEGORY, accountsItem.getDefaultCategory());
+                AppPreference.write(Const.CREATED_AT, accountsItem.getCreatedAt());
             }
         });
+        accountUid = AppPreference.read(Const.ACCOUNT_USER_ID, "");
+        categoryUid = AppPreference.read(Const.DEFAULT_CATEGORY, "");
+        changesSince = AppPreference.read(Const.CREATED_AT, "");
 
+        accountViewModel.loadTransactions(accountUid, categoryUid, changesSince).observe(getViewLifecycleOwner(), transactionResponseItems -> {
+        });
     }
-
-
 }

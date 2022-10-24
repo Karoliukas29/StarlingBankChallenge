@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import com.example.starlingbankchallenge.BuildConfig;
 import com.example.starlingbankchallenge.network.Interceptor.NetworkConnectionInterceptor;
 import com.example.starlingbankchallenge.network.services.AccountRetrofitService;
+import com.example.starlingbankchallenge.network.services.TransactionRetrofitService;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 
@@ -92,5 +93,11 @@ public class NetworkModule {
     @Provides
     public AccountRetrofitService provideAccountService(Retrofit retrofit) {
         return retrofit.create(AccountRetrofitService.class);
+    }
+
+    @Singleton
+    @Provides
+    public TransactionRetrofitService transactionRetrofitService(Retrofit retrofit) {
+        return retrofit.create(TransactionRetrofitService.class);
     }
 }
