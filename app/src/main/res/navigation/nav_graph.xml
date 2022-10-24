@@ -5,10 +5,11 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/transactionsFragment">
 
+
     <fragment
         android:id="@+id/transactionsFragment"
         android:name="com.example.starlingbankchallenge.feature.transactionsroundup.fragment.TransactionsFragment"
-        android:label="fragment_main"
+        android:label="transactionsFragment"
         tools:layout="@layout/fragment_transactions" />
     <fragment
         android:id="@+id/savingAccountFragment"

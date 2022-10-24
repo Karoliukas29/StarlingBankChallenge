@@ -9,6 +9,8 @@ import com.example.starlingbankchallenge.network.Interceptor.NetworkConnectionIn
 import com.example.starlingbankchallenge.network.services.AccountRetrofitService;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Singleton;
 
@@ -19,11 +21,14 @@ import dagger.hilt.android.qualifiers.ApplicationContext;
 import dagger.hilt.components.SingletonComponent;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+// Because hilt is user, that's why we use Network modules for building retrofit client.
+// And add providers for each library that is used like "okHttp", "GsonConverter" etc...
 @InstallIn(SingletonComponent.class)
 @Module
 public class NetworkModule {
@@ -53,6 +58,7 @@ public class NetworkModule {
                 .readTimeout(60, TimeUnit.SECONDS)
                 .addInterceptor(new NetworkConnectionInterceptor(context))
                 .addNetworkInterceptor(loggingInterceptor)
+                .protocols(Collections.singletonList(Protocol.HTTP_1_1))
                 .build();
         return okHttpClient;
     }
