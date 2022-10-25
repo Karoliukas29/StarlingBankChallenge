@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">StarlingBankChallenge</string>
     <string name="round_up">Round Up</string>
+    <string name="reference">Reference</string>
+    <string name="amount">Amount</string>
+    <string name="type">Type</string>
+    <string name="fps">FPS</string>
 </resources>

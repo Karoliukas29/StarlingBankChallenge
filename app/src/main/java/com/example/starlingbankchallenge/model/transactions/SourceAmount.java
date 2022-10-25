@@ -13,6 +13,15 @@ public class SourceAmount implements Parcelable {
 	@SerializedName("minorUnits")
 	private int minorUnits;
 
+	public SourceAmount(String currency, int minorUnits) {
+		this.currency = currency;
+		this.minorUnits = minorUnits;
+	}
+
+	public SourceAmount() {
+
+	}
+
 	protected SourceAmount(Parcel in) {
 		currency = in.readString();
 		minorUnits = in.readInt();
