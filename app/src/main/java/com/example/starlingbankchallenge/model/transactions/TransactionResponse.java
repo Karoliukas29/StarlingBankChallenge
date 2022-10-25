@@ -8,11 +8,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class TransactionResponse implements Parcelable {
 
-	@SerializedName("TransactionResponse")
-	private List<TransactionResponseItem> transactionResponse;
+	@SerializedName("feedItems")
+	private List<FeedItemsItem> feedItems;
+
+	public TransactionResponse(List<FeedItemsItem> feedItems) {
+		this.feedItems = feedItems;
+	}
+
+	public TransactionResponse() {
+	}
 
 	protected TransactionResponse(Parcel in) {
-		transactionResponse = in.createTypedArrayList(TransactionResponseItem.CREATOR);
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
 	}
 
 	public static final Creator<TransactionResponse> CREATOR = new Creator<TransactionResponse>() {
@@ -27,17 +42,9 @@ public class TransactionResponse implements Parcelable {
 		}
 	};
 
-	public List<TransactionResponseItem> getTransactionResponse(){
-		return transactionResponse;
-	}
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
 
-	@Override
-	public void writeToParcel(Parcel parcel, int i) {
-		parcel.writeTypedList(transactionResponse);
+	public List<FeedItemsItem> getFeedItems(){
+		return feedItems;
 	}
 }

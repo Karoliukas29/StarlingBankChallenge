@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Amount implements Parcelable {
+public class TotalFeeAmount implements Parcelable {
 
 	@SerializedName("currency")
 	private String currency;
@@ -13,16 +13,17 @@ public class Amount implements Parcelable {
 	@SerializedName("minorUnits")
 	private int minorUnits;
 
-	public Amount(String currency, int minorUnits) {
+
+	public TotalFeeAmount(String currency, int minorUnits) {
 		this.currency = currency;
 		this.minorUnits = minorUnits;
 	}
 
-	public Amount() {
+	public TotalFeeAmount() {
 
 	}
 
-	protected Amount(Parcel in) {
+	protected TotalFeeAmount(Parcel in) {
 		currency = in.readString();
 		minorUnits = in.readInt();
 	}
@@ -38,15 +39,15 @@ public class Amount implements Parcelable {
 		return 0;
 	}
 
-	public static final Creator<Amount> CREATOR = new Creator<Amount>() {
+	public static final Creator<TotalFeeAmount> CREATOR = new Creator<TotalFeeAmount>() {
 		@Override
-		public Amount createFromParcel(Parcel in) {
-			return new Amount(in);
+		public TotalFeeAmount createFromParcel(Parcel in) {
+			return new TotalFeeAmount(in);
 		}
 
 		@Override
-		public Amount[] newArray(int size) {
-			return new Amount[size];
+		public TotalFeeAmount[] newArray(int size) {
+			return new TotalFeeAmount[size];
 		}
 	};
 

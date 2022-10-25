@@ -1,10 +1,7 @@
 package com.example.starlingbankchallenge.repository;
 
 import com.example.starlingbankchallenge.model.transactions.TransactionResponse;
-import com.example.starlingbankchallenge.model.transactions.TransactionResponseItem;
 import com.example.starlingbankchallenge.network.services.TransactionRetrofitService;
-
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,7 +17,7 @@ public class TransfersRepository {
         this.transactionRetrofitService = transactionRetrofitService;
     }
 
-    public Single<List<TransactionResponseItem>> getTransactions(String token,String accountUid, String categoryUid, String changesSince){
+    public Single<TransactionResponse> getTransactions(String token, String accountUid, String categoryUid, String changesSince){
         return transactionRetrofitService.getTransactions(token, accountUid, categoryUid, changesSince);
     }
 }
