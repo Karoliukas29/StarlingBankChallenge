@@ -5,4 +5,5 @@
     <string name="amount">Amount</string>
     <string name="type">Type</string>
     <string name="fps">FPS</string>
+    <string name="round_up_amount">Round up</string>
 </resources>

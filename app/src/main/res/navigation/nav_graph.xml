@@ -10,7 +10,11 @@
         android:id="@+id/transactionsFragment"
         android:name="com.example.starlingbankchallenge.feature.transactionsroundup.fragment.TransactionsFragment"
         android:label="transactionsFragment"
-        tools:layout="@layout/fragment_transactions" />
+        tools:layout="@layout/fragment_transactions" >
+        <action
+            android:id="@+id/action_transactionsFragment_to_savingAccountFragment"
+            app:destination="@id/savingAccountFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savingAccountFragment"
         android:name="com.example.starlingbankchallenge.feature.savinggoal.fragment.SavingGoalFragment"
