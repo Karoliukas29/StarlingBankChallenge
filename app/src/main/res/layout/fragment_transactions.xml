@@ -5,7 +5,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_marginTop="@dimen/spacing_2x"
     tools:context=".feature.transactionsroundup.fragment.TransactionsFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTvReference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_3x"
+            android:text="@string/reference"
+            android:layout_margin="@dimen/spacing_base_half"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recyclerview_transactions"
+            app:layout_constraintEnd_toStartOf="@id/appCompatTvAmount"
+            />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_base_half"
+        android:text="@string/amount"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_transactions"
+        app:layout_constraintEnd_toStartOf="@id/appCompatTvAmountToRoundUp"
+        app:layout_constraintStart_toEndOf="@id/appCompatTvReference"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTvAmountToRoundUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_base_half"
+        android:text="@string/round_up_amount"
+        android:textColor="@color/dark_green"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_transactions"
+        app:layout_constraintEnd_toStartOf="@id/appCompatTvType"
+        app:layout_constraintStart_toEndOf="@id/appCompatTvAmount"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTvType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_base_half"
+        android:layout_marginEnd="@dimen/spacing_4x"
+        android:text="@string/type"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@id/recyclerview_transactions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/appCompatTvAmountToRoundUp"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_transactions"
@@ -14,13 +69,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="@dimen/spacing_8x"
+        app:layout_constraintTop_toBottomOf="@id/appCompatTvAmountToRoundUp" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_round_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="@string/round_up"
         android:layout_marginBottom="@dimen/spacing_10x"
         app:layout_constraintBottom_toBottomOf="parent"

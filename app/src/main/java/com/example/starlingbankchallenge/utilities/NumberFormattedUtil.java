@@ -9,10 +9,10 @@ import java.util.Locale;
 public class NumberFormattedUtil {
 
     public static String currencyWithChosenLocalisation(double value) {
-        NumberFormat nf = NumberFormat.getCurrencyInstance();
-        DecimalFormatSymbols decimalFormatSymbols = ((DecimalFormat) nf).getDecimalFormatSymbols();
+        NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+        DecimalFormatSymbols decimalFormatSymbols = ((DecimalFormat) numberFormat).getDecimalFormatSymbols();
         decimalFormatSymbols.setCurrencySymbol("");
-        ((DecimalFormat) nf).setDecimalFormatSymbols(decimalFormatSymbols);
-        return nf.format(value);
+        ((DecimalFormat) numberFormat).setDecimalFormatSymbols(decimalFormatSymbols);
+        return numberFormat.format(value);
     }
 }

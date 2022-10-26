@@ -1,15 +1,18 @@
 package com.example.starlingbankchallenge.feature.transactionsroundup.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.starlingbankchallenge.R;
 import com.example.starlingbankchallenge.base.BaseFragment;
 import com.example.starlingbankchallenge.databinding.FragmentTransactionsBinding;
 import com.example.starlingbankchallenge.feature.transactionsroundup.adapter.TransactionsAdapter;
@@ -18,7 +21,10 @@ import com.example.starlingbankchallenge.model.account.AccountsItem;
 import com.example.starlingbankchallenge.model.transactions.TransactionResponse;
 import com.example.starlingbankchallenge.network.base.StateData;
 import com.example.starlingbankchallenge.utilities.AppPreference;
+import com.example.starlingbankchallenge.utilities.CalculationsHelper;
 import com.example.starlingbankchallenge.utilities.Const;
+
+import java.text.DecimalFormat;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import timber.log.Timber;
@@ -26,8 +32,9 @@ import timber.log.Timber;
 @AndroidEntryPoint
 public class TransactionsFragment extends BaseFragment<FragmentTransactionsBinding> {
     private AccountViewModel accountViewModel;
-    private String accountUid, categoryUid, changesSince;
+    private String accountUid, categoryUid, changesSince, savingsGoalUid;
     private TransactionsAdapter transactionsAdapter;
+    private final DecimalFormat decimalFormat = new DecimalFormat("0.00");
     private static final String TAG = "TransactionsFragment";
 
     @Override
@@ -52,6 +59,7 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
         initView();
         observeData();
         observeState();
+        setUpButtonsListeners();
     }
 
     private void initView() {
@@ -60,6 +68,7 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
     }
 
     //observing live data and saving it in share preferences
+    @SuppressLint("SetTextI18n")
     private void observeData(){
         accountViewModel.loadAccounts().observe(getViewLifecycleOwner(), accountsResponse -> {
             for (AccountsItem accountsItem : accountsResponse.getAccounts()) {
@@ -68,6 +77,7 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
                 AppPreference.write(Const.CREATED_AT, accountsItem.getCreatedAt());
             }
         });
+
         accountUid = AppPreference.read(Const.ACCOUNT_USER_ID, "");
         categoryUid = AppPreference.read(Const.DEFAULT_CATEGORY, "");
         changesSince = AppPreference.read(Const.CREATED_AT, "");
@@ -78,9 +88,47 @@ public class TransactionsFragment extends BaseFragment<FragmentTransactionsBindi
             transactionsAdapter = new TransactionsAdapter(getContext());
             transactionsAdapter.submitList(transactionResponse.getFeedItems());
             binding.recyclerviewTransactions.setAdapter(transactionsAdapter);
+
+            double totalRoundUpSum = CalculateTotalRoundUpSum(transactionResponse);
+
+            if (transactionResponse.getFeedItems().size() != 0){
+                binding.buttonRoundUp.setVisibility(View.VISIBLE);
+                binding.buttonRoundUp.setText(requireContext().
+                        getString(R.string.round_up) + " £" + decimalFormat.format(totalRoundUpSum));
+            }
+        });
+//        accountViewModel.loadSpaces(accountUid).observe(getViewLifecycleOwner(), spacesResponse -> {
+//            AppPreference.write(Const.SAVINGS_GOAL_UID, spacesResponse.getSavingsGoals().get(0).getSavingsGoalUid());
+//
+//        });
+//        SavingsGoalRequest savingsGoalRequest = new SavingsGoalRequest();
+//        savingsGoalRequest.setCurrency("GBP");
+//        savingsGoalRequest.setName("Testing");
+//        Target target = new Target();
+//        target.setMinorUnits(100000);
+//        target.setCurrency("GBP");
+//        savingsGoalRequest.setTarget(target);
+//        accountViewModel.loadSavingGoals(accountUid, savingsGoalRequest).observe(getViewLifecycleOwner(),savingsGoalResponse -> {
+//            Log.i(TAG, "observeData: +++++++++" + savingsGoalResponse);
+//        });
+    }
+
+    private void setUpButtonsListeners(){
+        binding.buttonRoundUp.setOnClickListener(view -> {
+            navController.navigate(R.id.action_transactionsFragment_to_savingAccountFragment);
+
         });
     }
 
+    private double CalculateTotalRoundUpSum(TransactionResponse transactionResponse){
+        int minorUnits = 0;
+        double totalRoundUpSum = 0d;
+        for(int i = 0; i < transactionResponse.getFeedItems().size(); i++){
+            minorUnits = transactionResponse.getFeedItems().get(i).getAmount().getMinorUnits();
+            totalRoundUpSum = totalRoundUpSum + CalculationsHelper.RoundUpAvailableAmount(minorUnits);
+        }
+        return totalRoundUpSum;
+    }
 
     private void observeState() {
         accountViewModel.stateLiveData.observe(getViewLifecycleOwner(), this::handleStatus);
