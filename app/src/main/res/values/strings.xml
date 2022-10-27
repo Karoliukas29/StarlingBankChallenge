@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">StarlingBankChallenge</string>
     <string name="round_up">Round Up</string>
+    <string name="reference">Reference</string>
+    <string name="amount">Amount</string>
+    <string name="type">Type</string>
+    <string name="fps">FPS</string>
+    <string name="round_up_amount">Round up</string>
+    <string name="savings_name">Savings Name</string>
+    <string name="target">Target</string>
+    <string name="unknown">Unknown</string>
+    <string name="no_transactions_to_display">No transactions to display</string>
+    <string name="open_savings_account">Open Savings Account</string>
 </resources>

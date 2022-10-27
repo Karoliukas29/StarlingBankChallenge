@@ -7,6 +7,10 @@ import android.net.NetworkInfo;
 import com.example.starlingbankchallenge.BuildConfig;
 import com.example.starlingbankchallenge.network.Interceptor.NetworkConnectionInterceptor;
 import com.example.starlingbankchallenge.network.services.AccountRetrofitService;
+import com.example.starlingbankchallenge.network.services.SavingGoalRetrofitService;
+import com.example.starlingbankchallenge.network.services.SpacesRetrofitService;
+import com.example.starlingbankchallenge.network.services.TransactionRetrofitService;
+import com.example.starlingbankchallenge.network.services.TransferRetrofitService;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 
@@ -80,7 +84,6 @@ public class NetworkModule {
     public RxJava2CallAdapterFactory providesRxJavaCallAdapterFactory() {
         return RxJava2CallAdapterFactory.create();
     }
-
     @Provides
     @Singleton
     public boolean provideIsNetworkAvailable(@ApplicationContext Context context) {
@@ -92,5 +95,30 @@ public class NetworkModule {
     @Provides
     public AccountRetrofitService provideAccountService(Retrofit retrofit) {
         return retrofit.create(AccountRetrofitService.class);
+    }
+
+    @Singleton
+    @Provides
+    public TransactionRetrofitService transactionRetrofitService(Retrofit retrofit) {
+        return retrofit.create(TransactionRetrofitService.class);
+    }
+
+    @Singleton
+    @Provides
+    public SpacesRetrofitService spacesRetrofitService(Retrofit retrofit) {
+        return retrofit.create(SpacesRetrofitService.class);
+    }
+
+
+    @Singleton
+    @Provides
+    public SavingGoalRetrofitService savingGoalRetrofitService(Retrofit retrofit) {
+        return retrofit.create(SavingGoalRetrofitService.class);
+    }
+
+    @Singleton
+    @Provides
+    public TransferRetrofitService transferRetrofitService(Retrofit retrofit) {
+        return retrofit.create(TransferRetrofitService.class);
     }
 }
