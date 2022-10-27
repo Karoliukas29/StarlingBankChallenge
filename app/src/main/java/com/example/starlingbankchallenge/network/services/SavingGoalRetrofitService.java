@@ -11,5 +11,5 @@ import retrofit2.http.Path;
 
 public interface SavingGoalRetrofitService {
     @PUT("/api/v2/account/{accountUid}/savings-goals")
-    Single<SavingsGoalResponse> getSavingGoal(@Header("Authorization") String token, @Path("accountUid") String accountUid, @Body SavingsGoalRequest request);
+    Single<SavingsGoalResponse> createSavingGoal(@Header("Authorization") String token, @Path("accountUid") String accountUid, @Body SavingsGoalRequest request);
 }

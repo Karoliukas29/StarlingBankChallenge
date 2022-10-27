@@ -10,6 +10,7 @@ import com.example.starlingbankchallenge.network.services.AccountRetrofitService
 import com.example.starlingbankchallenge.network.services.SavingGoalRetrofitService;
 import com.example.starlingbankchallenge.network.services.SpacesRetrofitService;
 import com.example.starlingbankchallenge.network.services.TransactionRetrofitService;
+import com.example.starlingbankchallenge.network.services.TransferRetrofitService;
 import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 
@@ -113,5 +114,11 @@ public class NetworkModule {
     @Provides
     public SavingGoalRetrofitService savingGoalRetrofitService(Retrofit retrofit) {
         return retrofit.create(SavingGoalRetrofitService.class);
+    }
+
+    @Singleton
+    @Provides
+    public TransferRetrofitService transferRetrofitService(Retrofit retrofit) {
+        return retrofit.create(TransferRetrofitService.class);
     }
 }

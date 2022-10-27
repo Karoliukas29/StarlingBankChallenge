@@ -38,13 +38,16 @@ public class TransactionsAdapter extends ListAdapter<FeedItemsItem, Transactions
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
-        holder.binding.appCompatTvReference.setText(getItem(position).getReference());
-
+        if (getItem(position).getReference() == null){
+       holder.binding.appCompatTvReference.setText(R.string.unknown);
+        }else {
+            holder.binding.appCompatTvReference.setText(getItem(position).getReference());
+        }
         int amountInPennies = getItem(position).getAmount().getMinorUnits();
         double amountWithDecimal = (double) (amountInPennies / 100.0);
 
         String availableAmountToRoundUpDecimal = decimalFormat.format(CalculationsHelper.
-                RoundUpAvailableAmount(amountInPennies));
+                roundUpAvailableAmount(amountInPennies));
         holder.binding.appCompatTvAmountToRoundUp.setText("+" + availableAmountToRoundUpDecimal);
 
         holder.binding.appCompatTvAmount.setText(getItem(position).getAmount().getCurrency() + " " +

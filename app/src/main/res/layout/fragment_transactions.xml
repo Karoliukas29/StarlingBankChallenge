@@ -72,7 +72,6 @@
         android:paddingBottom="@dimen/spacing_8x"
         app:layout_constraintTop_toBottomOf="@id/appCompatTvAmountToRoundUp" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_round_up"
         android:layout_width="wrap_content"
@@ -84,6 +83,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/appCompatTvNoTransactionsToDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/spacing_base_half"
+        android:visibility="gone"
+        android:layout_marginEnd="@dimen/spacing_4x"
+        android:text="@string/no_transactions_to_display"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
