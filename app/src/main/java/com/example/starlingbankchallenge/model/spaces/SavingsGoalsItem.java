@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class SavingsGoalsItem implements Parcelable {
 
 	@SerializedName("totalSaved")
@@ -95,5 +97,18 @@ public class SavingsGoalsItem implements Parcelable {
 		parcel.writeString(name);
 		parcel.writeInt(savedPercentage);
 		parcel.writeParcelable(target, i);
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		SavingsGoalsItem that = (SavingsGoalsItem) o;
+		return sortOrder == that.sortOrder && savedPercentage == that.savedPercentage && Objects.equals(totalSaved, that.totalSaved) && Objects.equals(savingsGoalUid, that.savingsGoalUid) && Objects.equals(name, that.name) && Objects.equals(target, that.target);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(totalSaved, savingsGoalUid, sortOrder, name, savedPercentage, target);
 	}
 }

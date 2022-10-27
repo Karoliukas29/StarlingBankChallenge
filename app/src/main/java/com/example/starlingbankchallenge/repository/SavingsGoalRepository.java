@@ -19,7 +19,7 @@ public class SavingsGoalRepository {
         this.savingGoalRetrofitService = savingGoalRetrofitService;
     }
 
-    public Single<SavingsGoalResponse> getSavingGoal(String token, String accountUid, SavingsGoalRequest request){
-        return savingGoalRetrofitService.getSavingGoal(token,accountUid, request);
+    public Single<SavingsGoalResponse> createSavingGoal(String token, String accountUid, SavingsGoalRequest request){
+        return savingGoalRetrofitService.createSavingGoal(token,accountUid, request);
     }
 }

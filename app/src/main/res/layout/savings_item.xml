@@ -11,61 +11,44 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/spacing_3x">
+        android:padding="@dimen/spacing_base">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTvReference"
+            android:id="@+id/appCompatTvSavingsName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_3x"
-            android:text="@string/reference"
-            android:layout_margin="@dimen/spacing_base_half"
+            android:text="@string/savings_name"
             app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/appCompatTvAmount"
+            app:layout_constraintEnd_toStartOf="@id/appCompatTvSavedAmount"
             />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTvAmount"
+            android:id="@+id/appCompatTvSavedAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/amount"
             app:layout_constrainedHeight="true"
-            android:layout_margin="@dimen/spacing_base_half"
-            app:layout_constraintStart_toEndOf="@id/appCompatTvReference"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/appCompatTvAmountToRoundUp"
-       />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTvAmountToRoundUp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/round_up_amount"
-            android:textColor="@color/dark_green"
-            app:layout_constrainedHeight="true"
-            android:layout_margin="@dimen/spacing_base_half"
+            app:layout_constraintEnd_toStartOf="@id/appCompatTvTargetToSave"
+            app:layout_constraintStart_toEndOf="@id/appCompatTvSavingsName"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/appCompatTvAmount"
-            app:layout_constraintEnd_toStartOf="@id/appCompatTvType"
             />
 
+
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/appCompatTvType"
+            android:id="@+id/appCompatTvTargetToSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/target"
             app:layout_constrainedHeight="true"
-            android:layout_marginEnd="@dimen/spacing_3x"
-            android:text="@string/type"
             android:layout_margin="@dimen/spacing_base_half"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/appCompatTvAmountToRoundUp"
+            app:layout_constraintStart_toEndOf="@id/appCompatTvSavedAmount"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,11 +9,11 @@ import javax.inject.Singleton;
 import io.reactivex.Single;
 
 @Singleton
-public class TransfersRepository {
+public class TransactionsRepository {
     private TransactionRetrofitService transactionRetrofitService;
 
     @Inject
-    public TransfersRepository(TransactionRetrofitService transactionRetrofitService) {
+    public TransactionsRepository(TransactionRetrofitService transactionRetrofitService) {
         this.transactionRetrofitService = transactionRetrofitService;
     }
 
